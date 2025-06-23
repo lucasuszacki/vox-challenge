@@ -5,6 +5,7 @@
   "files.trimTrailingWhitespace": true,
 
   // Code formatting
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
@@ -14,19 +15,5 @@
   // Indentation
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "editor.detectIndentation": false,
-
-  // Prettier used only for non-code files
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-
-  // Disable Prettier globally so ESLint is the default
-  "editor.defaultFormatter": null
+  "editor.detectIndentation": false
 }
