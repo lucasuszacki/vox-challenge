@@ -19,6 +19,8 @@ export class FormComponent implements OnInit {
   form!: FormGroup;
   isEditMode = false;
   id!: number;
+  registrationEntities: { key: number; value: string }[] = [];
+  states: { id: number; sigla: string; nome: string }[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -31,10 +33,36 @@ export class FormComponent implements OnInit {
     this.isEditMode = !!this.id;
 
     this.buildForm();
+    this.loadRegistrationEntities();
+    this.loadStates();
 
     if (this.isEditMode) {
       console.log('Edit mode ON! ID:', this.id);
     }
+  }
+
+  loadRegistrationEntities() {
+    fetch('http://localhost:3000/entidade-registro')
+      .then((res) => res.json())
+      .then((data) => {
+        this.registrationEntities = data;
+      })
+      .catch(() => {
+        console.error('Failed to load registration entities');
+      });
+  }
+
+  loadStates() {
+    fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados/')
+      .then((res) => res.json())
+      .then((data) => {
+        this.states = data.sort((a: any, b: any) =>
+          a.nome.localeCompare(b.nome)
+        );
+      })
+      .catch(() => {
+        console.error('Failed to load states');
+      });
   }
 
   buildForm() {
