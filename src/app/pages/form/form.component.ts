@@ -7,8 +7,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { CompanyService } from '@services/company.service';
 import { CompanyRequest } from '@models/company.model';
+import { ModalSuccessComponent } from '@components/modal-success/modal-success.component';
 
 @Component({
   selector: 'app-form',
@@ -28,7 +30,8 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private modalService: BsModalService
   ) {}
 
   ngOnInit(): void {
@@ -80,6 +83,16 @@ export class FormComponent implements OnInit {
     });
   }
 
+  showSuccessModal() {
+    const modalRef = this.modalService.show(ModalSuccessComponent, {
+      class: 'modal-sm',
+    });
+
+    modalRef.onHidden?.subscribe(() => {
+      this.router.navigate(['/']);
+    });
+  }
+
   buildForm() {
     this.form = this.fb.group({
       solicitante: this.fb.group({
@@ -105,8 +118,21 @@ export class FormComponent implements OnInit {
 
   onSubmit() {
     if (this.form.invalid) return;
+
     const data = this.form.value;
-    console.log('Form send:', data);
+
+    const request$ = this.isEditMode
+      ? this.companyService.update(this.id, data)
+      : this.companyService.create(data);
+
+    request$.subscribe({
+      next: () => {
+        this.showSuccessModal();
+      },
+      error: () => {
+        alert('Erro ao salvar solicitação.');
+      },
+    });
   }
 
   onCancel() {
