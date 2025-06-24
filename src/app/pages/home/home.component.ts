@@ -36,10 +36,10 @@ export class HomeComponent implements OnInit {
   }
 
   onCreateNew() {
-    this.router.navigate(['/new']);
+    this.router.navigate(['/solicitar']);
   }
 
   onEdit(id: number) {
-    this.router.navigate(['/edit', id]);
+    this.router.navigate(['/editar', id]);
   }
 }

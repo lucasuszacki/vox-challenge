@@ -8,12 +8,12 @@ export const routes: Routes = [
       import('./pages/home/home.component').then((m) => m.HomeComponent),
   },
   {
-    path: 'new',
+    path: 'solicitar',
     loadComponent: () =>
       import('./pages/form/form.component').then((m) => m.FormComponent),
   },
   {
-    path: 'edit/:id',
+    path: 'editar/:id',
     loadComponent: () =>
       import('./pages/form/form.component').then((m) => m.FormComponent),
   },
