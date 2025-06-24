@@ -7,6 +7,16 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/home/home.component').then((m) => m.HomeComponent),
   },
+  {
+    path: 'new',
+    loadComponent: () =>
+      import('./pages/form/form.component').then((m) => m.FormComponent),
+  },
+  {
+    path: 'edit/:id',
+    loadComponent: () =>
+      import('./pages/form/form.component').then((m) => m.FormComponent),
+  },
 ];
 
 export const appRouting = provideRouter(routes);
