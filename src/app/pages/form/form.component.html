@@ -14,7 +14,22 @@
       </div>
       <div class="mb-3">
         <label>CPF</label>
-        <input type="text" class="form-control" formControlName="nu_cpf" />
+        <input
+          type="text"
+          class="form-control"
+          formControlName="nu_cpf"
+          mask="000.000.000-00"
+          placeholder="000.000.000-00"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            form.get('solicitante.nu_cpf')?.invalid &&
+            form.get('solicitante.nu_cpf')?.touched
+          "
+        >
+          CPF inválido
+        </small>
       </div>
       <div class="mb-3">
         <label>Data de Nascimento</label>
@@ -53,7 +68,22 @@
         <legend>Endereço</legend>
         <div class="mb-3">
           <label>CEP</label>
-          <input type="text" class="form-control" formControlName="co_cep" />
+          <input
+            type="text"
+            class="form-control"
+            formControlName="co_cep"
+            mask="00000-000"
+            placeholder="00000-000"
+          />
+          <small
+            class="text-danger"
+            *ngIf="
+              form.get('solicitante.co_cep')?.invalid &&
+              form.get('solicitante.co_cep')?.touched
+            "
+          >
+            CEP inválido
+          </small>
         </div>
         <div class="mb-3">
           <label>Logradouro</label>

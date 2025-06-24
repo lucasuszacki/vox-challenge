@@ -11,11 +11,12 @@ import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { CompanyService } from '@services/company.service';
 import { CompanyRequest } from '@models/company.model';
 import { ModalSuccessComponent } from '@components/modal-success/modal-success.component';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ModalModule],
+  imports: [CommonModule, ReactiveFormsModule, ModalModule, NgxMaskDirective],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
