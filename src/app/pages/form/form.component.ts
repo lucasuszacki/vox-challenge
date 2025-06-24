@@ -26,6 +26,7 @@ export class FormComponent implements OnInit {
   id!: number;
   registrationEntities: { key: number; value: string }[] = [];
   states: { id: number; sigla: string; nome: string }[] = [];
+  isSubmitting = false;
 
   constructor(
     private fb: FormBuilder,
@@ -120,6 +121,7 @@ export class FormComponent implements OnInit {
   onSubmit() {
     if (this.form.invalid) return;
 
+    this.isSubmitting = true;
     const data = this.form.value;
 
     const request$ = this.isEditMode
@@ -128,9 +130,13 @@ export class FormComponent implements OnInit {
 
     request$.subscribe({
       next: () => {
-        this.showSuccessModal();
+        setTimeout(() => {
+          this.isSubmitting = false;
+          this.showSuccessModal();
+        }, 1000); // setTimeout apenas para simular delay de uma request
       },
       error: () => {
+        this.isSubmitting = false;
         alert('Erro ao salvar solicitação.');
       },
     });
