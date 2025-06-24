@@ -39,7 +39,7 @@
       <div class="mb-3">
         <label>Entidade de Registro</label>
         <select class="form-select" formControlName="co_entidade_registro">
-          <option value="" disabled selected>Selecione uma opção</option>
+          <option value="" disabled>Selecione uma opção</option>
           <option
             *ngFor="let entity of registrationEntities"
             [value]="entity.key"
@@ -90,7 +90,7 @@
         <div class="mb-3">
           <label>UF</label>
           <select class="form-select" formControlName="co_uf">
-            <option value="" disabled selected>Selecione uma opção</option>
+            <option value="" disabled>Selecione uma opção</option>
             <option *ngFor="let state of states" [value]="state.sigla">
               {{ state.nome }} ({{ state.sigla }})
             </option>

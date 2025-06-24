@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { CompanyService } from '@services/company.service';
 import { CompanyRequest } from '@models/company.model';
 import { ModalSuccessComponent } from '@components/modal-success/modal-success.component';
@@ -15,7 +15,7 @@ import { ModalSuccessComponent } from '@components/modal-success/modal-success.c
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ModalModule],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
@@ -102,9 +102,9 @@ export class FormComponent implements OnInit {
       }),
       empresa: this.fb.group({
         ds_nome_fantasia: ['', Validators.required],
-        co_entidade_registro: [null, Validators.required],
+        co_entidade_registro: ['', Validators.required],
         endereco: this.fb.group({
-          co_cep: [null, Validators.required],
+          co_cep: ['', Validators.required],
           ds_logradouro: ['', Validators.required],
           co_numero: ['', Validators.required],
           ds_complemento: [''],
