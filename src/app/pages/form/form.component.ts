@@ -7,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CompanyService } from '@services/company.service';
+import { CompanyRequest } from '@models/company.model';
 
 @Component({
   selector: 'app-form',
@@ -25,7 +27,8 @@ export class FormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private companyService: CompanyService
   ) {}
 
   ngOnInit(): void {
@@ -37,7 +40,7 @@ export class FormComponent implements OnInit {
     this.loadStates();
 
     if (this.isEditMode) {
-      console.log('Edit mode ON! ID:', this.id);
+      this.loadCompanyData(this.id);
     }
   }
 
@@ -63,6 +66,18 @@ export class FormComponent implements OnInit {
       .catch(() => {
         console.error('Failed to load states');
       });
+  }
+
+  loadCompanyData(id: number) {
+    this.companyService.getById(id).subscribe({
+      next: (company: CompanyRequest) => {
+        this.form.patchValue(company);
+      },
+      error: () => {
+        console.error('Failed to load data from company');
+        this.router.navigate(['/']);
+      },
+    });
   }
 
   buildForm() {
