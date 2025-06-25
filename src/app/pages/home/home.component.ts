@@ -15,6 +15,7 @@ import { CompanyCardComponent } from '@components/company-card/company-card.comp
 export class HomeComponent implements OnInit {
   companyList: CompanyRequest[] = [];
   isLoading = false;
+  selectedCompany?: CompanyRequest;
 
   constructor(private companyService: CompanyService, private router: Router) {}
 
@@ -41,5 +42,9 @@ export class HomeComponent implements OnInit {
 
   onEdit(id: number) {
     this.router.navigate(['/editar', id]);
+  }
+
+  onSelect(company: CompanyRequest) {
+    this.selectedCompany = company;
   }
 }

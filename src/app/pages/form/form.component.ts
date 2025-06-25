@@ -87,7 +87,7 @@ export class FormComponent implements OnInit {
 
   showSuccessModal() {
     const modalRef = this.modalService.show(ModalSuccessComponent, {
-      class: 'modal-sm',
+      class: 'modal-sm modal-dialog-centered',
     });
 
     modalRef.onHidden?.subscribe(() => {
@@ -105,15 +105,15 @@ export class FormComponent implements OnInit {
       empresa: this.fb.group({
         ds_nome_fantasia: ['', Validators.required],
         co_entidade_registro: ['', Validators.required],
-        endereco: this.fb.group({
-          co_cep: ['', Validators.required],
-          ds_logradouro: ['', Validators.required],
-          co_numero: ['', Validators.required],
-          ds_complemento: [''],
-          ds_bairro: ['', Validators.required],
-          ds_municipio: ['', Validators.required],
-          co_uf: ['', Validators.required],
-        }),
+      }),
+      endereco: this.fb.group({
+        co_cep: ['', Validators.required],
+        ds_logradouro: ['', Validators.required],
+        co_numero: ['', Validators.required],
+        ds_complemento: [''],
+        ds_bairro: ['', Validators.required],
+        ds_municipio: ['', Validators.required],
+        co_uf: ['', Validators.required],
       }),
     });
   }

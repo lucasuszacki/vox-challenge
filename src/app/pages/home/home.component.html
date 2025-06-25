@@ -1,28 +1,86 @@
-<div class="container py-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Solicitações de Abertura</h2>
-    <button class="btn btn-primary" (click)="onCreateNew()">
-      Solicitar Abertura
-    </button>
-  </div>
-
-  <div *ngIf="isLoading" class="text-center">
-    <div class="spinner-border text-primary" role="status"></div>
-  </div>
-
-  <div
-    *ngIf="!isLoading && companyList.length === 0"
-    class="text-muted text-center"
+<div
+  class="w-100 bg-primary text-white py-3 px-4 d-flex justify-content-between align-items-center"
+>
+  <h2 class="fw-bold mb-0">Solicitações de Abertura</h2>
+  <button
+    class="btn btn-light text-primary fw-semibold"
+    (click)="onCreateNew()"
   >
-    Nenhuma solicitação encontrada.
-  </div>
+    Solicitar Abertura
+  </button>
+</div>
 
-  <div class="row g-3" *ngIf="companyList.length > 0">
-    <div class="col-md-6" *ngFor="let company of companyList">
-      <app-company-card
-        [company]="company"
-        (edit)="onEdit(company.id!)"
-      ></app-company-card>
+<div class="container py-4">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="list-group">
+        <div
+          *ngFor="let company of companyList"
+          class="list-group-item d-flex justify-content-between align-items-center mb-2"
+        >
+          <div>
+            <div class="fw-semibold">
+              {{ company.solicitante.ds_responsavel }}
+            </div>
+            <div class="text-muted">{{ company.empresa.ds_nome_fantasia }}</div>
+          </div>
+          <button
+            class="btn btn-outline-primary btn-sm"
+            (click)="onSelect(company)"
+          >
+            Visualizar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-7 border-start ps-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0">Detalhes do pedido</h5>
+        <button
+          *ngIf="selectedCompany"
+          class="btn btn-outline-secondary btn-sm"
+          (click)="onEdit(selectedCompany.id!)"
+        >
+          Editar
+        </button>
+      </div>
+
+      <div *ngIf="selectedCompany">
+        <p>
+          <strong>Responsável:</strong>
+          {{ selectedCompany.solicitante.ds_responsavel }}
+        </p>
+        <p><strong>CPF:</strong> {{ selectedCompany.solicitante.nu_cpf }}</p>
+        <p>
+          <strong>Endereço:</strong>
+          {{ selectedCompany.empresa.endereco.ds_logradouro }}
+        </p>
+        <p>
+          <strong>Bairro:</strong>
+          {{ selectedCompany.empresa.endereco.ds_bairro }}
+        </p>
+        <p>
+          <strong>Cidade:</strong>
+          {{ selectedCompany.empresa.endereco.ds_municipio }}
+        </p>
+        <p>
+          <strong>CEP:</strong> {{ selectedCompany.empresa.endereco.co_cep }}
+        </p>
+        <p>
+          <strong>Complemento:</strong>
+          {{ selectedCompany.empresa.endereco.ds_complemento }}
+        </p>
+        <p><strong>UF:</strong> {{ selectedCompany.empresa.endereco.co_uf }}</p>
+        <p>
+          <strong>Número:</strong>
+          {{ selectedCompany.empresa.endereco.co_numero }}
+        </p>
+      </div>
+
+      <div *ngIf="!selectedCompany" class="text-muted">
+        Selecione uma empresa para ver os detalhes
+      </div>
     </div>
   </div>
 </div>
