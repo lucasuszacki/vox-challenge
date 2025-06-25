@@ -1,59 +1,76 @@
 # Vox
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+Desafio técnico para a empresa **Vox**, sistema de solicitações de abertura de empresa.
 
-## Development server
+---
 
-To start a local development server, run:
+## Como rodar o projeto
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 1. Instale o projeto:
 
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 2. Inicie o backend:
 
 ```bash
-ng generate --help
+npm run mock
 ```
 
-## Building
+> Este comando inicia o `json-server` como `api-faker`, os dados do arquivo `mocks/db.json` que estão nesse repositório e também estão acessível em `http://localhost:3000`.
 
-To build the project run:
+### 3. Inicie o frontend:
 
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+> Este comando inicia o projeto em `http://localhost:4200`
 
-## Running unit tests
+## Ferramentas e Bibliotecas
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Angular 19 (Standalone Components)
+- RxJS + Reactive Forms
+- Bootstrap
+- JSON Server (`json-server`)
+- API pública do IBGE para lista de estados
+- ngx-mask (máscaras de CPF e CEP)
+- ngx-bootstrap (modais)
 
-```bash
-ng test
+## Estrutura do projeto
+
+```
+src/
+├── app/
+│   ├── pages/
+│   ├── components/
+│   ├── services/
+│   ├── models/
+│   └── app.routes.ts
+├── mocks/
+│   └── db.json
 ```
 
-## Running end-to-end tests
+## O que foi feito?
 
-For end-to-end (e2e) testing, run:
+- [x] Tela inicial com listagem de empresas
+- [x] Cadastro e edição com formulários reativos
+- [x] Máscaras de CPF e CEP
+- [x] Validação de campos com mensagens visuais
+- [x] Modal de sucesso centralizada com botão de fechar
+- [x] Design adaptado para o layout proposto no mockup
+- [x] Navegação entre páginas (`/`, `/solicitar`, `/editar/:id`)
 
-```bash
-ng e2e
-```
+## Melhorias
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- [ ] Design poderia ser mais real ao fornecido pelo mockup
+- [ ] Excluir listagens de empresas
+- [ ] Lista mais elaborada com filtro e paginação
+- [ ] Responsividade
+- [ ] Modo escuro e acessibilidade
+- [ ] Reaproveitar melhor components
 
-## Additional Resources
+## Desenvolvido por
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+[Lucas Uszacki](https://github.com/lucasuszacki)
