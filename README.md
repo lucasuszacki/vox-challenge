@@ -70,6 +70,7 @@ src/
 - [ ] Responsividade
 - [ ] Modo escuro e acessibilidade
 - [ ] Reaproveitar melhor components
+- [ ] Adicionar testes
 
 ## Desenvolvido por
 
